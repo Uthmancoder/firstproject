@@ -1,0 +1,41 @@
+<div>
+  <!-- Outputting Data using String Interpolation -->
+  <h1 class="bg alert alert-danger text-center">{{ title }}</h1>
+
+  <div class="col-11 col-md-6 col-lg-5 p-3 shadow mx-auto">
+    <input type="text" class="form-control" (input)="searchInput($event)" />
+    <p>{{ searchText }}</p>
+  </div>
+
+  <p>Welcome to the homepage!</p>
+  <p>Click on the links above to navigate to other pages.</p>
+  <div class="row w-100 container">
+    <div *ngFor="let item of productArray" class="col-11 col-md-6 col-lg-4">
+      <img class="img-fluid" [src]="item.image" alt="" />
+      <p>{{ item.name }}</p>
+      <p>{{ item.price }}</p>
+    </div>
+  </div>
+
+  <div class="row container mx-auto w-100">
+    <div class="col-11 col-md-6">
+      <h1>Learning Angularjs</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore soluta
+        ab, tempora ullam eius dolorem magni repellat molestias odio explicabo
+        ex quisquam atque, optio commodi, neque cumque unde velit veritatis.
+        Iusto nobis voluptatum odio nostrum voluptatibus dolore placeat
+        reprehenderit quo? Blanditiis optio fugit consectetur earum eius
+        temporibus ea tenetur magni consequatur adipisci eos repellat, sequi
+        possimus, odio culpa voluptatum officia. Laborum nulla corporis vel.
+        Aspernatur sequi ex, nulla fuga magni, animi voluptate repellat
+        veritatis nobis omnis rerum accusamus! Harum iure officiis minima
+        voluptatibus expedita obcaecati maxime debitis sint cupiditate voluptas.
+      </p>
+    </div>
+    <!-- Outputting data through property binding -->
+    <div class="col-11 col-md-6">
+      <img [src]="image" class="w-100 h-100 img-fluid" alt="" />
+    </div>
+  </div>
+</div>
