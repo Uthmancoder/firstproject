@@ -3,17 +3,34 @@
   <h1 class="bg alert alert-danger text-center">{{ title }}</h1>
 
   <div class="col-11 col-md-6 col-lg-5 p-3 shadow mx-auto">
-    <input type="text" class="form-control" (input)="searchInput($event)" />
-    <p>{{ searchText }}</p>
+    <!-- <input type="text" class="form-control" (input)="searchInput($event)" /> -->
+    <input type="text" class="form-control" [(ngModel)]="searchText" />
+    <p *ngIf="searchText !== ''">You Searched For : {{ searchText }}</p>
   </div>
 
   <p>Welcome to the homepage!</p>
   <p>Click on the links above to navigate to other pages.</p>
-  <div class="row w-100 container">
-    <div *ngFor="let item of productArray" class="col-11 col-md-6 col-lg-4">
+  <div class="row w-100 container mx-auto">
+    <div
+      *ngFor="let item of productArray"
+      class="col-11 col-md-6 col-lg-3 bg alert alert-secondary"
+      [ngClass]="{ changeBackground: item.isAvailable }"
+    >
       <img class="img-fluid" [src]="item.image" alt="" />
-      <p>{{ item.name }}</p>
-      <p>{{ item.price }}</p>
+      <h3>{{ item.name }}</h3>
+      <p>{{ item.category }}</p>
+      <p>
+        Availability : <span *ngIf="item.isAvailable">Available</span>
+        <span *ngIf="!item.isAvailable">Not Available</span>
+      </p>
+      <h4>#{{ item.price }}</h4>
+
+      <button *ngIf="item.isAvailable" class="btn btn alert alert-success">
+        Add To Cart
+      </button>
+      <button *ngIf="!item.isAvailable" class="btn btn alert alert-danger">
+        View More
+      </button>
     </div>
   </div>
 
@@ -38,4 +55,6 @@
       <img [src]="image" class="w-100 h-100 img-fluid" alt="" />
     </div>
   </div>
+
+  <app-products />
 </div>

@@ -1,0 +1,59 @@
+<div>
+  <!-- All Products -->
+
+  <!-- Filter Bar -->
+
+  <div>
+    <p>Filter By Category</p>
+    <div class="d-flex align-items-center justify-content-center gap-5">
+      <div class="d-flex align-items-center gap-2">
+        <p class="mt-2">All Courses</p>
+        <input
+          (click)="SelectCourse('All Course')"
+          type="radio"
+          name="category"
+          id=""
+        />
+        <span>({{ allCourses }})</span>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <p class="mt-2">Premium Courses</p>
+        <input
+          (click)="SelectCourse('Premium Course')"
+          type="radio"
+          name="category"
+          id=""
+        />
+        <span>({{ premiumCourses }})</span>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <p class="mt-2">Free Courses</p>
+        <input
+          (click)="SelectCourse('Free Course')"
+          type="radio"
+          name="category"
+          id=""
+        />
+        <span>({{ FreeCourses }})</span>
+      </div>
+    </div>
+  </div>
+
+  <h1>Products Component</h1>
+  <div class="productContainer">
+    <div *ngFor="let course of CoursesArray">
+      <div class="shadow p-4">
+        <img class="img" [src]="course.image" alt="" />
+        <div>
+          <h5>{{ course.name }}</h5>
+          <p>{{ course.category }}</p>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-between">
+          <button class="btn btn alert alert-danger">View More</button>
+          <button class="btn btn alert alert-success">Add To Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
