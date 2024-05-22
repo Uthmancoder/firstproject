@@ -13,6 +13,7 @@
           type="radio"
           name="category"
           id=""
+          checked
         />
         <span>({{ allCourses }})</span>
       </div>
@@ -39,6 +40,17 @@
     </div>
   </div>
 
+  <!-- <div><input type="search" (input)="SearchInput($event)" name="" id="" /></div> -->
+  <div>
+    <input
+      type="search"
+      [(ngModel)]="searchText"
+      (input)="SearchInput($event)"
+      name=""
+      id=""
+    />
+  </div>
+
   <h1>Products Component</h1>
   <div class="productContainer">
     <div *ngFor="let course of CoursesArray">
@@ -51,9 +63,16 @@
 
         <div class="d-flex align-items-center justify-content-between">
           <button class="btn btn alert alert-danger">View More</button>
-          <button class="btn btn alert alert-success">Add To Cart</button>
+          <button
+            class="btn btn alert alert-success"
+            (click)="AddToCart(course.name)"
+          >
+            Add To Cart
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<app-noproduct />

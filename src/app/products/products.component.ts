@@ -2,17 +2,19 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MyserviceService } from '../myservice.service';
+import { NoproductComponent } from '../noproduct/noproduct.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NoproductComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
  
-  // selectedCourse : string = ""
+  selectedCourse : string = ""
   
    CoursesArray = [
     {
@@ -58,6 +60,7 @@ export class ProductsComponent {
       category : "premium"
     },
   ]
+  searchText: string = ""
 
   AllCourses  = this.CoursesArray
 
@@ -78,8 +81,32 @@ export class ProductsComponent {
       this.CoursesArray = this.freeCourses
     }
   }
-//   onInit(){
-// this.selectedCourse = ""
-//   }
+  onInit(){
+    this.selectedCourse = "All Course"
+  }
+  
+  SearchInput(enteredText : any){
+    //  console.log("Entered Text : ", enteredText)
+     let  inptext = (<HTMLInputElement>enteredText.target).value
+     this.searchText = inptext
 
-}
+     console.log("Received Text : ", this.searchText)
+
+      let filteredCourses =  this.CoursesArray.filter((course)=> course.name.includes(this.searchText))
+      console.log("Filtered Course : ", filteredCourses)
+      if (filteredCourses) {
+        this.CoursesArray = filteredCourses
+      }else{
+        this.CoursesArray = this.AllCourses
+      }
+     } 
+
+      purchaseProduct = new MyserviceService()
+    
+      AddToCart(name : string){
+        this.purchaseProduct.clickMe(name)
+      }
+
+  }
+
+
